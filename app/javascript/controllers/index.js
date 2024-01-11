@@ -3,4 +3,7 @@
 // ./bin/rails generate stimulus controllerName
 
 import { application } from "./application"
+import PasswordToggleController from "./password_toggle_controller"
+
+application.register("PasswordToggle", PasswordToggleController)
 

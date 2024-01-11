@@ -74,4 +74,4 @@ ENTRYPOINT ["/app/bin/docker-entrypoint-web"]
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD ["rails", "s", "-b", "0.0.0.0"]
+CMD ["./bin/dev"]
