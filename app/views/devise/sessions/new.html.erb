@@ -13,12 +13,12 @@
 						<h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
 
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-							<div class="mb-3">
+							<div class="field mb-3">
 								<%= f.label :email, 'E-Mail' , class: "mb-2 text-muted" %><br />
 								<%= f.email_field :email, autofocus: true, autocomplete: "email" , class: "form-control" %>
 							</div>
 
-							<div class="mb-3">
+							<div class="field mb-3">
 								<div class="mb-2 w-100">
 									<%= f.label :password, class: "text-muted" %>
                   <%- if devise_mapping.recoverable? && controller_name !='passwords' && controller_name !='registrations' %>
@@ -28,7 +28,7 @@
 								<%= f.password_field :password, autocomplete: "current-password" , class: "form-control" %>
 							</div>
 
-							<div class="d-flex align-items-center">
+							<div class="actions d-flex align-items-center">
 								<% if devise_mapping.rememberable? %>
 									<div class="field form-check">
 										<%= f.check_box :remember_me, class: "form-check-input" %>
@@ -44,7 +44,7 @@
 
           <div class="card-footer py-3 border-0">
 						<div class="text-center">
-							Don't have an account? <a class="text-dark" href="/users/sign_up">Criar Conta</a>
+							Don't have an account? <a class="text-dark" href="/users/sign_up">Create Account</a>
 						</div>
 					</div>
 				</div>
