@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary"></div>
+  <div class="container-fluid">
+      <a href="/" class="navbar-brand">
+        <%= image_tag("logo.png", class: "d-inline-block align-text-top") %>
+          Desconto INSS
+      </a>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Acount
+            </a>
+            <ul class="dropdown-menu dropdown-menu-lg-end">
+              <% if current_user %>
+                <li><a class="dropdown-item" href="/users/edit">Perfil</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li>  <%= link_to('Sair', destroy_user_session_path, :method => :delete) %></li>
+              <% else %>
+                <a class="dropdown-item" href="/users/sign_in">Login</a>
+                <a class="dropdown-item" href="/users/sign_up">Create Account</a>
+              <% end %>
+            </ul>
+          </li>
+        </ul>
+      <div>
+    </div>
+  </div>
+</nav>
+
