@@ -47,6 +47,9 @@ gem "bootsnap", require: false
 # Execute jobs in the background [https://github.com/mperham/sidekiq]
 gem "sidekiq", "~> 7.2"
 
+# Flexible authentication solution for Rails with Warden
+gem 'devise', '~> 4.2'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
