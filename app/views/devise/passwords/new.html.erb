@@ -10,7 +10,7 @@
 
         <div class="card shadow-lg">
 					<div class="card-body p-5">
-            <h2 class="fs-4 card-title fw-bold mb-4"">Forgot your password?</h2>
+            <h2 class="fs-4 card-title fw-bold mb-4">Forgot your password?</h2>
 
             <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
               <%= render "devise/shared/error_messages", resource: resource %>
@@ -28,7 +28,7 @@
 
           <div class="card-footer py-3 border-0">
 						<div class="text-center">
-							Remember your password? <a class="text-dark" href="/users/sign">Login</a>
+							Remember your password? <a class="text-dark" href="/users/sign_in">Login</a>
 						</div>
 					</div>
 				</div>
