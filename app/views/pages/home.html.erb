@@ -1,6 +1,16 @@
-<div class="row home">
-<div class="center">
-  <h4 class="title">Calcule o desconto de INSS</h4>
-  <h5 class="subtitle">Crie Proponentes, Calcule o desconto de INSS e gere relatórios</h5>
-  <h5 class="subtitle2">Rápido, fácil e garantido </h5>
+
+<div class="container">
+  <div class="text-center my-5">
+    <h4 class="title">Calcule o desconto de INSS</h4>
+    <h5 class="subtitle">Crie Proponentes, Calcule o desconto de INSS e gere relatórios</h5>
+    <h5 class="subtitle2">Rápido, fácil e garantido </h5>
+
+		<div class="text-center">
+			<% if current_user %>
+        <a class="text-primary" href="#">Enter</a>
+      <% else %>
+        <a class="text-primary" href="/users/sign_in">Login</a>
+      <% end %>
+		</div>
+  </div>
 </div>

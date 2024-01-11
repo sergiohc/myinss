@@ -15,7 +15,7 @@
               <% if current_user %>
                 <li><a class="dropdown-item" href="/users/edit">Perfil</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li>  <%= link_to('Sair', destroy_user_session_path, :method => :delete) %></li>
+                <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete } %>
               <% else %>
                 <a class="dropdown-item" href="/users/sign_in">Login</a>
                 <a class="dropdown-item" href="/users/sign_up">Create Account</a>

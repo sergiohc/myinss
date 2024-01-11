@@ -109,8 +109,6 @@ function yarn:build {
     args=(--sourcemap --watch)
   fi
 
-  echo "heuaheuahe"
-
   esbuild app/javascript/*.* --outdir=app/assets/builds --bundle "${args[@]}"
 }
 
@@ -123,8 +121,6 @@ function yarn:watch:css {
   elif [ "${RAILS_ENV:-}" == "development" ]; then
     args=(--sourcemap --watch)
   fi
-
-  echo "heuaheuahe"
 
   nodemon --watch ./app/assets/stylesheets/ --ext scss --exec yarn build:css
 }
