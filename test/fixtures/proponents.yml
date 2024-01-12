@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  cpf: MyString
+  date_of_birth: MyString
+  : 2024-01-12
+  salary: 9.99
+
+two:
+  name: MyString
+  cpf: MyString
+  date_of_birth: MyString
+  : 2024-01-12
+  salary: 9.99
