@@ -24,22 +24,32 @@
               <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
             <% end %>
 
-            <div class="field mb-3">
-              <%= f.label :password, class: "text-muted" %> <i>(leave blank if you don't want to change it)</i>
-              <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
-              <% if @minimum_password_length %>
-                <em><%= @minimum_password_length %> characters minimum</em>
-              <% end %>
+            <div class="input-group mb-3", data-controller="password-toggle">
+              <%= f.password_field :password, autocomplete: "off", class: "form-control", "data-password-toggle-target": "input" %>
+              <span class="input-group-text">
+                <a data-action="click->password-toggle#password" class="bi bi-eye"></a>
+              </span>
             </div>
 
-            <div class="field mb-3">
+            <div class="field mb-3", data-controller="password-toggle">
               <%= f.label :password_confirmation, class: "mb-1 text-muted" %>
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+              <div class="input-group mb-3">
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", "data-password-toggle-target": "input" %>
+                <span class="input-group-text">
+                  <a data-action="click->password-toggle#password" class="bi bi-eye"></a>
+                </span>
+              </div>
             </div>
 
-            <div class="field mb-3">
+            <div class="field mb-3", data-controller="password-toggle">
               <%= f.label :current_password, class: "mb-2 text-muted" %> <i>(we need your current password to confirm your changes)</i>
-              <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
+
+              <div class="input-group mb-3">
+                <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control", "data-password-toggle-target": "input" %>
+                <span class="input-group-text">
+                  <a data-action="click->password-toggle#password" class="bi bi-eye"></a>
+                </span>
+              </div>
             </div>
 
             <div class="actions d-flex align-items-center">

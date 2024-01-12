@@ -18,14 +18,20 @@
 								<%= f.email_field :email, autofocus: true, autocomplete: "email" , class: "form-control" %>
 							</div>
 
-							<div class="field mb-3">
+							<div class="field mb-3" data-controller="password-toggle">
 								<div class="mb-2 w-100">
 									<%= f.label :password, class: "text-muted" %>
                   <%- if devise_mapping.recoverable? && controller_name !='passwords' && controller_name !='registrations' %>
                     <%= link_to "Forgot your password?" , new_password_path(resource_name), class: "float-end" %>
                   <% end %>
 								</div>
-								<%= f.password_field :password, autocomplete: "current-password" , class: "form-control" %>
+
+								<div class="input-group mb-3">
+									<%= f.password_field :password, autocomplete: "current-password" , class: "form-control", "data-password-toggle-target": "input"  %>
+									<span class="input-group-text">
+                	  <a data-action="click->password-toggle#password" class="bi bi-eye"></a>
+                	</span>
+								</div>
 							</div>
 
 							<div class="actions d-flex align-items-center">

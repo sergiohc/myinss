@@ -22,23 +22,25 @@
 
             <div class="field mb-3">
               <%= f.label :password, class: "mb-2 text-muted" %>
+
               <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
               <% end %><br />
-              <div class="input-group mb-3" data-controller="password-toggle">
-                <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+
+              <div class="input-group mb-3", data-controller="password-toggle">
+                <%= f.password_field :password, autocomplete: "off", class: "form-control", "data-password-toggle-target": "input" %>
                 <span class="input-group-text">
-                  <a data-action="click->password-toggle#password" class="password-field-icon-1 bi bi-eye"></a>
+                  <a data-action="click->password-toggle#password" class="bi bi-eye"></a>
                 </span>
               </div>
             </div>
 
-            <div class="field input-group mb-3">
+            <div class="field input-group mb-3", data-controller="password-toggle">
               <%= f.label :password_confirmation, class: "mb-2 text-muted" %>
               <div class="input-group mb-3">
-                <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+                <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control",  "data-password-toggle-target": "input"  %>
                 <span class="input-group-text">
-                  <a data-action="click->password-toggle#password" class="password-field-icon-1 bi bi-eye"></a>
+                  <a data-action="click->password-toggle#password" class="bi bi-eye"></a>
                 </span>
               </div>
             </div>
