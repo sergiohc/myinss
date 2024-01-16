@@ -17,7 +17,7 @@ export default class extends Controller {
       data: {
         labels: labels.map(label => label.range),
         datasets: [{
-          label: '# of Votes',
+          label: '# Total',
           data: data,
           borderWidth: 1
         }]
