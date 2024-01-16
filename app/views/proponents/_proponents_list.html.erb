@@ -1,45 +1,59 @@
 <turbo-frame id="proponents_list">
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>CPF</th>
-        <th>Date of Birth</th>
-        <th>Salary</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @proponents.each_with_index do |proponent, index| %>
-        <tr data-bs-toggle="collapse" data-bs-target="#collapse-<%= index %>" aria-expanded="false" aria-controls="collapse-<%= index %>">
+  <% @proponents.each do |range, proponents| %>
+
+    <div data-bs-toggle="collapse" data-bs-target="#collapse-<%=  range[:range].gsub(/[^0-9a-z]/i, '_') %>" aria-expanded="false"
+      aria-controls="collapse-<%=  range[:range].gsub(/[^0-9a-z]/i, '_') %>">
+      <div class="container text-center border" style="<%= cycle('background-color: #f8f9fa;', 'background-color: #ffffff;') %>">
+        <div class="row">
+          <div class="col"> <%= range[:range] %></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="collapse" id="collapse-<%=  range[:range].gsub(/[^0-9a-z]/i, '_') %>">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>CPF</th>
+            <th>Date of Birth</th>
+            <th>Salary</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% proponents.each do |proponent| %>
+        <tr data-bs-toggle="collapse" data-bs-target="#collapse-<%= proponent.id %>" aria-expanded="false" aria-controls="collapse-<%= proponent.id %>">
           <td><%= proponent.name %></td>
           <td><%= proponent.cpf %></td>
           <td><%= proponent.date_of_birth %></td>
           <td><%= proponent.salary %></td>
         </tr>
-        <tr>
-          <td colspan="4">
-            <div class="collapse" id="collapse-<%= index %>">
-              <div class="card card-body">
-                <div class="p-2">
-                  <strong>Address:</strong>
+          <tr>
+            <td colspan="4">
+              <div class="collapse" id="collapse-<%= proponent.id %>">
+                <div class="card card-body">
+                  <div class="p-2">
+                    <strong>Address:</strong>
                     <%= proponent.address.street %>,
                     <%= proponent.address.number %>,
                     <%= proponent.address.neighborhood %>,
                     <%= proponent.address.city %>,
                     <%= proponent.address.state %>,
                     <%= proponent.address.cep %><br>
-                </div>
-                <div class="p-2">
-                  <strong>Contacts:</strong>
-                  <% proponent.contacts.each do |contact| %>
+                  </div>
+                  <div class="p-2">
+                    <strong>Contacts:</strong>
+                    <% proponent.contacts.each do |contact| %>
                     <span> <%= contact.contact_type %> <%= contact.phone_number %> <span>
-                  <% end %>
+                        <% end %>
+                  </div>
                 </div>
               </div>
-            </div>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
 </turbo-frame>

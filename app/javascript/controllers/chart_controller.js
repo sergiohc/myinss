@@ -1,22 +1,24 @@
 import { Controller } from "@hotwired/stimulus"
 import Chart from 'chart.js/auto';
 
+// Connects to data-controller="chart"
 export default class extends Controller {
   connect() {
     this.loadChart();
   }
 
   loadChart() {
-    var ctx = this.element.querySelector('canvas').getContext('2d');
+    const ctx = document.getElementById('myChart');
+    const labels = JSON.parse(this.element.dataset.chartLabels);
+    const data = JSON.parse(this.element.dataset.chartData);
+
     this.chart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: JSON.parse(this.data.get('labels')),
+        labels: labels.map(label => label.range),
         datasets: [{
-          label: 'Salary',
-          data: JSON.parse(this.data.get('data')),
-          backgroundColor: 'rgba(75, 192, 192, 0.2)',
-          borderColor: 'rgba(75, 192, 192, 1)',
+          label: '# of Votes',
+          data: data,
           borderWidth: 1
         }]
       },

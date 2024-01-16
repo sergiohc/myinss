@@ -4,5 +4,11 @@
 
 import { application } from "./application"
 
+import ChartController from "./chart_controller"
+application.register("chart", ChartController)
+
+import DisplayController from "./display_controller"
+application.register("display", DisplayController)
+
 import PasswordToggleController from "./password_toggle_controller"
 application.register("password-toggle", PasswordToggleController)

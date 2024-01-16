@@ -1,7 +1,16 @@
-<div data-controller="chart"
-    data-chart-labels="<%= @proponents.map { |proponent| proponent.name }.to_json.html_safe %>"
-    data-chart-data="<%= @proponents.map { |proponent| proponent.salary }.to_json.html_safe %>">
-  <canvas></canvas>
-</div>
+<div data-controller="display">
+  <div class="mt-4">
+    <button class="btn btn-primary" data-action="display#showChart">Show Chart</button>
+    <button class="btn btn-primary" data-action="display#showList">Show List</button>
+  </div>
 
-<%= render 'proponents_list' %>
+  <div data-display-target="chart" data-controller="chart"
+      data-chart-labels="<%= @proponents.keys.to_json %>"
+      data-chart-data="<%=  @proponents.values.map(&:count).to_json %>">
+    <canvas id="myChart"></canvas>
+  </div>
+
+  <div class="mt-4" data-display-target="list" style="display: none;">
+    <%= render 'proponents_list' %>
+  </div>
+</div>
