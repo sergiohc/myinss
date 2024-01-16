@@ -3,7 +3,7 @@ class ProponentsController < ApplicationController
 
   # GET /proponents or /proponents.json
   def index
-    @proponents = Proponent.paginate(page: params[:page], per_page: 5)
+    @proponents = Proponent.all
   end
 
   # GET /proponents/1 or /proponents/1.json
@@ -68,7 +68,7 @@ class ProponentsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def proponent_params
       params.require(:proponent).permit(:name, :cpf, :date_of_birth, :salary,
-                                        adress_attributes: [:street, :number, :neighborhood, :city, :cep, :state],
+                                        address_attributes: [:street, :number, :neighborhood, :city, :cep, :state],
                                         contacts_attributes: [:id, :contact_type, :phone_number, :_destroy])
     end
 end

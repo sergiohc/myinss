@@ -1,0 +1,7 @@
+<div data-controller="chart"
+    data-chart-labels="<%= @proponents.map { |proponent| proponent.name }.to_json.html_safe %>"
+    data-chart-data="<%= @proponents.map { |proponent| proponent.salary }.to_json.html_safe %>">
+  <canvas></canvas>
+</div>
+
+<%= render 'proponents_list' %>

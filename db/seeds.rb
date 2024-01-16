@@ -21,7 +21,7 @@
     phone_number: FFaker::PhoneNumber.phone_number
   )
 
-  proponent.create_adress!(
+  proponent.create_address!(
     street: FFaker::Address.street_name,
     number: FFaker::Address.building_number,
     neighborhood: FFaker::Address.neighborhood,

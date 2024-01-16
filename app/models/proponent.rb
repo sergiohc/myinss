@@ -1,7 +1,7 @@
 class Proponent < ApplicationRecord
-  has_one :adress, dependent: :destroy
+  has_one :address, dependent: :destroy
   has_many :contacts, dependent: :destroy
-  accepts_nested_attributes_for :adress, :contacts
+  accepts_nested_attributes_for :address, :contacts
 
   validates :cpf, uniqueness: true
 end
