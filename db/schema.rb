@@ -17,23 +17,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_12_210840) do
   create_table "adresses", force: :cascade do |t|
     t.string "street"
     t.string "number"
-    t.string "district"
+    t.string "neighborhood"
     t.string "city"
     t.string "state"
     t.string "cep"
-    t.bigint "proponents_id", null: false
+    t.bigint "proponent_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["proponents_id"], name: "index_adresses_on_proponents_id"
+    t.index ["proponent_id"], name: "index_adresses_on_proponent_id"
   end
 
   create_table "contacts", force: :cascade do |t|
-    t.integer "type"
+    t.integer "contact_type"
     t.string "phone_number"
-    t.bigint "proponents_id", null: false
+    t.bigint "proponent_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["proponents_id"], name: "index_contacts_on_proponents_id"
+    t.index ["proponent_id"], name: "index_contacts_on_proponent_id"
   end
 
   create_table "proponents", force: :cascade do |t|
@@ -58,6 +58,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_12_210840) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "adresses", "proponents", column: "proponents_id"
-  add_foreign_key "contacts", "proponents", column: "proponents_id"
+  add_foreign_key "adresses", "proponents"
+  add_foreign_key "contacts", "proponents"
 end
