@@ -54,7 +54,10 @@ gem 'devise', '~> 4.2'
 # gem "image_processing", "~> 1.2"
 
 # Composable Operations is a tool set for creating operations [https://github.com/t6d/composable_operations]
-gem 'composable_operations'
+gem 'composable_operations', '~> 0.10.1'
+
+# Kaminari is a Scope & Engine based, clean, powerful, agnostic, customizable and sophisticated paginator
+gem 'kaminari', '~> 0.17.0'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
