@@ -17,22 +17,20 @@ class ProponentsController < ApplicationController
 
   def create
     operation = Operations::Proponents::Create.new(proponent_params)
+    operation.perform
 
-    if operation.perform
-      redirect_to operation.object, notice: 'Proponent was successfully created.'
-    else
-      @proponent = operation.object
-      render :new
+    respond_to do |format|
+      if operation.succeeded?
+        format.html { redirect_to root_path, notice: 'Project was successfully created.' }
+        format.json { render :index, status: :created }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: operation.errors.messages, status: :unprocessable_entity }
+      end
     end
   end
 
-  def update
-    if @proponent.update(proponent_params)
-      redirect_to @proponent, notice: 'Proponent was successfully updated.'
-    else
-      render :edit
-    end
-  end
+  def update; end
 
   def destroy
     @proponent.destroy
@@ -46,6 +44,8 @@ class ProponentsController < ApplicationController
   end
 
   def proponent_params
-    params.require(:proponent).permit(:cpf, address_attributes: [:id, :street, :city, :state, :country, :zip], contacts_attributes: [:id, :name, :phone, :_destroy])
+      params.require(:proponent).permit(:name, :cpf, :date_of_birth, :salary,
+                                    address_attributes: [:id, :street, :number, :neighborhood, :city, :state, :cep, :_destroy],
+                                    contacts_attributes: [:id, :contact_type, :phone_number, :_destroy])
   end
 end

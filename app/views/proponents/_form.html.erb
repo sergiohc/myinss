@@ -1,0 +1,126 @@
+<%= form_with model: proponent, data: { controller: "nested-form", nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |form| %>
+  <% if proponent.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(proponent.errors.count, "error") %> prohibited this proponent from being saved:</h2>
+
+      <ul>
+        <% proponent.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+    <div class="row">
+      <div class="col-md-6 field">
+        <%= form.label :name %>
+        <%= form.text_field :name, class: 'form-control' %>
+      </div>
+
+      <div class="col-md-6 field">
+        <%= form.label :salary %>
+        <%= form.number_field :salary, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 field">
+        <%= form.label :date_of_birth %>
+        <%= form.date_field  :date_of_birth, class: 'form-control' %>
+      </div>
+
+      <div class="col-md-6 field">
+        <%= form.label :cpf %>
+        <%= form.text_field :cpf, class: 'form-control' %>
+      </div>
+    </div>
+
+    <!-- Accordion -->
+    <div class="accordion mt-4" id="registrationAccordion">
+      <!-- Address Information -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingAddress">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseAddress" aria-expanded="false" aria-controls="collapseAddress">
+            Address Information
+          </button>
+        </h2>
+        <div id="collapseAddress" class="accordion-collapse collapse" aria-labelledby="headingAddress"
+          data-bs-parent="#registrationAccordion">
+          <div class="accordion-body">
+            <%= form.fields_for :address do |address_fields| %>
+            <div class="row">
+              <div class="col-md-6 field">
+                <%= address_fields.label :cep %>
+                <%= address_fields.text_field :cep, class: 'form-control' %>
+              </div>
+
+              <div class="col-md-6 field">
+                <%= address_fields.label :street %>
+                <%= address_fields.text_field :street, class: 'form-control' %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 field">
+                <%= address_fields.label :number %>
+                <%= address_fields.text_field :number, class: 'form-control' %>
+              </div>
+
+              <div class="col-md-6 field">
+                <%= address_fields.label :neighborhood %>
+                <%= address_fields.text_field :neighborhood, class: 'form-control' %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 field">
+                <%= address_fields.label :city %>
+                <%= address_fields.text_field :city, class: 'form-control' %>
+              </div>
+
+              <div class="col-md-6 field">
+                <%= address_fields.label :state %>
+                <%= address_fields.text_field :state, class: 'form-control' %>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+
+    <!-- Contact Information -->
+      <div class="accordion-item mt-4">
+        <h2 class="accordion-header" id="headingContact">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseContact"
+            aria-expanded="false" aria-controls="collapseContact">
+            Contact Information
+          </button>
+        </h2>
+        <div id="collapseContact" class="accordion-collapse collapse" aria-labelledby="headingContact"
+          data-bs-parent="#registrationAccordion">
+          <div class="accordion-body">
+
+            <template data-nested-form-target="template">
+              <%= form.fields_for :contacts, Contact.new, child_index: 'NEW_RECORD' do |contact_fields| %>
+              <%= render 'contact_fields', f: contact_fields %>
+              <% end %>
+            </template>
+
+            <%= form.fields_for :contacts do |contact_fields| %>
+            <%= render "contact_fields", f: contact_fields %>
+            <% end %>
+
+            <div data-nested-form-target="target"></div>
+
+            <button type="button" class="btn btn-success" data-action="nested-form#add">Add Contact</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="actions">
+    <%= form.submit 'Submit', class: 'btn btn-primary mt-3', data: { action: "click->nested-form#submitForm" } %>
+  </div>
+<% end %>

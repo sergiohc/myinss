@@ -10,5 +10,11 @@ application.register("chart", ChartController)
 import DisplayController from "./display_controller"
 application.register("display", DisplayController)
 
+import NestedFormController from "./nested_form_controller"
+application.register("nested-form", NestedFormController)
+
 import PasswordToggleController from "./password_toggle_controller"
 application.register("password-toggle", PasswordToggleController)
+
+import RemoteModalController from "./remote_modal_controller"
+application.register("remote-modal", RemoteModalController)

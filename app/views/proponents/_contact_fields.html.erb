@@ -1,0 +1,17 @@
+<div class="nested-form-wrapper" data-new-record="<%= f.object.new_record? %>">
+  <div class="field form-group">
+    <%= f.label :phone_number, class: 'form-label' %>
+    <%= f.telephone_field :phone_number, class: 'form-control' %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :contact_type, class: 'form-label' %>
+    <%= f.select :contact_type, Contact.contact_types.keys.map { |w| [w.humanize, w] }, {}, class: 'form-control' %>
+  </div>
+
+  <%= f.hidden_field :_destroy %>
+
+  <div class="d-flex justify-content-end mt-2">
+    <button type="button" class="btn btn-danger" data-action="nested-form#remove">Remove Contact</button>
+  </div>
+</div>

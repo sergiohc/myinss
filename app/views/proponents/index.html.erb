@@ -1,8 +1,8 @@
 <div class="mt-4">
   <h1>Proponents</h1>
 
-  <div class="d-flex justify-content-end">
-    <%= link_to 'New Proponent', new_proponent_path, class: 'btn btn-success' %>
+  <div class="d-flex justify-content-end" data-controller="sidebar">
+    <%= link_to 'New Proponent', new_proponent_path, class: 'btn btn-success', data: { turbo_frame: "remote_modal" } %>
   </div>
 
   <table class="table table-striped">

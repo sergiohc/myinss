@@ -5,11 +5,12 @@ module Operations
 
       attr_reader :object, :validator
 
-      delegate :errors, to: :validator
+      # TODO: add validation
+      # delegate :errors, to: :validator
 
       def execute
         build
-        validate
+        # validate
         persist
         @object
       end
@@ -26,10 +27,6 @@ module Operations
 
       def build
         @object = Proponent.new(params)
-        @object.build_address(params[:address_attributes])
-        params[:contacts_attributes].each do |contact_params|
-          @object.contacts.build(contact_params)
-        end
       end
 
       def persist

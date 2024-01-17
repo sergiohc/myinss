@@ -62,14 +62,15 @@ gem 'kaminari', '~> 0.17.0'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
+  gem 'pry'
+  gem 'pry-remote'
+  gem 'pry-nav'
+  gem 'ffaker', '~> 2.23'
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-
-  # Ffaker generates dummy data.
-  gem 'ffaker', '~> 2.23'
 end
 
 group :test do
