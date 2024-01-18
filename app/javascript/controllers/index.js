@@ -10,6 +10,9 @@ application.register("chart", ChartController)
 import DisplayController from "./display_controller"
 application.register("display", DisplayController)
 
+import InssDiscountController from "./inss_discount_controller"
+application.register("inss-discount", InssDiscountController)
+
 import NestedFormController from "./nested_form_controller"
 application.register("nested-form", NestedFormController)
 

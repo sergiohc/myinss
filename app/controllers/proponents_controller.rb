@@ -37,6 +37,21 @@ class ProponentsController < ApplicationController
     redirect_to proponents_url, notice: 'Proponent was successfully destroyed.'
   end
 
+  def inss_discount
+    operation = Operations::Proponents::InssDiscountCalculator.new(params)
+    operation.perform
+
+    puts operation.total_discount
+
+    respond_to do |format|
+      if operation.succeeded?
+        format.json { render json: { inss_discount: operation.total_discount.floor(2) } }
+      else
+        format.json { render json: operation.errors.messages, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
 
   def set_proponent
@@ -44,7 +59,7 @@ class ProponentsController < ApplicationController
   end
 
   def proponent_params
-      params.require(:proponent).permit(:name, :cpf, :date_of_birth, :salary,
+      params.require(:proponent).permit(:name, :cpf, :date_of_birth, :salary, :inss_discount,
                                     address_attributes: [:id, :street, :number, :neighborhood, :city, :state, :cep, :_destroy],
                                     contacts_attributes: [:id, :contact_type, :phone_number, :_destroy])
   end

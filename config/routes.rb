@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   # Defines the dashboard path route ("/dashboard")
   get "dashboard" => "dashboard#index", as: :dashboard
 
+  # Defines get inss discount
+  get 'proponents/inss_discount', to: 'proponents#inss_discount'
+
   # Defines the proponents path route ("/proponents")
   resources :proponents
 end
