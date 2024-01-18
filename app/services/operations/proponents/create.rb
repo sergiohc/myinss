@@ -26,6 +26,9 @@ module Operations
       end
 
       def build
+        net_salary = params[:salary] - params[:inss_discount]
+
+        params[:net_salary] = net_salary.round(2)
         @object = Proponent.new(params)
       end
 

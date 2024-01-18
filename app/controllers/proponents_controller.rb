@@ -34,11 +34,11 @@ class ProponentsController < ApplicationController
 
   def destroy
     @proponent.destroy
-    redirect_to proponents_url, notice: 'Proponent was successfully destroyed.'
+    redirect_to proponents_path, notice: 'Proponent was successfully destroyed.'
   end
 
   def inss_discount
-    operation = Operations::Proponents::InssDiscountCalculator.new(params)
+    operation = Operations::Proponents::InssDiscountCalculator.new(params[:salary].to_f)
     operation.perform
 
     puts operation.total_discount

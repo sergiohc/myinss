@@ -8,7 +8,7 @@
     name: FFaker::Name.name,
     cpf: FFaker::IdentificationBR.pretty_cpf,
     date_of_birth: FFaker::Time.between(30.years.ago, 18.years.ago),
-    salary: rand(1000..5000).to_f
+    salary: rand(0..7786.02).to_f
   )
 
   proponent.contacts.create!(
@@ -29,4 +29,6 @@
     state: FFaker::AddressBR.state,
     cep: FFaker::AddressBR.zip_code
   )
+
+  UpdateSalaryJob.perform_async(proponent.id)
 end

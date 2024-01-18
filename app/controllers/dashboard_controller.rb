@@ -9,16 +9,17 @@ class DashboardController < ApplicationController
 
   def salary_range(salary)
     case salary
-    when 0..1045
-      { id: 1, range: 'Até R$ 1.045,00' }
-    when 1045.01..2089.60
-      { id: 2, range: 'De R$ 1.045,01 a R$ 2.089,60' }
-    when 2089.61..3134.40
-      { id: 3, range: 'De R$ 2.089,61 até R$ 3.134,40' }
-    when 3134.41..6101.06
-      { id: 4, range: 'De R$ 3.134,41 até R$ 6.101,06' }
+    when 0..1412.00
+      { id: 1, range: 'Até R$ 1.412,00' }
+    when 1412.01..2666.68
+      { id: 2, range: 'De R$ 1.412,01 a R$ 2.666,68' }
+    when 2666.69..4000.03
+      { id: 3, range: 'De R$ 2.666,69 até R$ 4.000,03' }
+    when 4000.04..7786.02
+      { id: 4, range: 'De R$ 4.000,04 até R$ 7.786,02' }
     else
-      { id: 5, range: 'Acima de R$ 6.101,06' }
+      { id: 5, range: 'Acima de R$ 7.786,02' }
     end
   end
 end
+

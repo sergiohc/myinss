@@ -23,7 +23,7 @@ module Operations
 
       def build
         @total_discount = 0
-        @salary = params[:salary].to_f
+        @salary = params
       end
 
       def calculate

@@ -11,7 +11,7 @@
         <th>Name</th>
         <th>Salary</th>
         <th>actions</th>
-        <th colspan="3"></th>
+        <%# <th colspan="3"></th> %>
       </tr>
     </thead>
 
@@ -21,8 +21,11 @@
           <td><%= proponent.name %></td>
           <td><%= proponent.salary %></td>
 
+          <!--
           <td><%= link_to 'Show', proponent %></td>
           <td><%= link_to 'Edit', edit_proponent_path(proponent) %></td>
+          -->
+
           <td><%= link_to 'Destroy', proponent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
