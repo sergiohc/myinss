@@ -3,12 +3,12 @@ class UpdateSalaryJob
 
   def perform(proponent_id)
     proponent = Proponent.find(proponent_id)
-    operator = Operations::Proponents::InssDiscountCalculator.new(proponent.salary)
-    operator.perform
+    operation = Operations::Proponents::InssDiscountCalculator.new(proponent.salary)
+    operation.perform
 
-    return operator.halted?
+    return if operation.halted?
 
-    net_salary = proponent.salary - operator.total_discount
-    proponent.update(net_salary: net_salary.round(2) , inss_discount: operator.total_discount.round(2))
+    net_salary = proponent.salary.to_f - operation.total_discount.to_f
+    proponent.update(net_salary: net_salary.round(2) , inss_discount: operation.total_discount.round(2))
   end
 end

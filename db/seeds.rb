@@ -8,25 +8,25 @@
     name: FFaker::Name.name,
     cpf: FFaker::IdentificationBR.pretty_cpf,
     date_of_birth: FFaker::Time.between(30.years.ago, 18.years.ago),
-    salary: rand(0..7786.02).to_f
+    salary: rand(0..7786.02).to_f.round(2)
   )
 
   proponent.contacts.create!(
-    contact_type: ['personal'].sample,
-    phone_number: FFaker::PhoneNumber.phone_number
+    contact_type: ['personal'],
+    phone_number: FFaker::PhoneNumberBR.phone_number
   )
 
   proponent.contacts.create!(
-    contact_type: ['reference'].sample,
-    phone_number: FFaker::PhoneNumber.phone_number
+    contact_type: ['reference'],
+    phone_number: FFaker::PhoneNumberBR.phone_number
   )
 
   proponent.create_address!(
-    street: FFaker::Address.street_name,
-    number: FFaker::Address.building_number,
-    neighborhood: FFaker::Address.neighborhood,
-    city: FFaker::Address.city,
-    state: FFaker::AddressBR.state,
+    street: FFaker::AddressBR.street_name ,
+    number: FFaker::AddressBR.building_number,
+    neighborhood: FFaker::AddressBR.neighborhood,
+    city: FFaker::AddressBR.city,
+    state: FFaker::AddressBR.state_abbr,
     cep: FFaker::AddressBR.zip_code
   )
 

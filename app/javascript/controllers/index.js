@@ -13,11 +13,11 @@ application.register("display", DisplayController)
 import InssDiscountController from "./inss_discount_controller"
 application.register("inss-discount", InssDiscountController)
 
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)
+
 import NestedFormController from "./nested_form_controller"
 application.register("nested-form", NestedFormController)
 
 import PasswordToggleController from "./password_toggle_controller"
 application.register("password-toggle", PasswordToggleController)
-
-import RemoteModalController from "./remote_modal_controller"
-application.register("remote-modal", RemoteModalController)

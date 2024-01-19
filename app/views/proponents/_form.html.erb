@@ -1,4 +1,4 @@
-<%= form_with model: proponent, data: { controller: "nested-form", nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |form| %>
+<%= form_with model: proponent, data: { turbo_frame: "_top", controller: "nested-form", nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |form| %>
   <% if proponent.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(proponent.errors.count, "error") %> prohibited this proponent from being saved:</h2>
@@ -21,13 +21,13 @@
     <div class="row mt-2" data-controller="inss-discount">
       <div class="col-md-6 field">
         <%= form.label :salary %>
-        <%= form.number_field :salary, data: {  action: "change->inss-discount#calculate",
+        <%= form.number_field :salary, min: 0, max: 7786.02, data: {  action: "change->inss-discount#calculate",
                                                 inss_discount_target: "salary" },  class: 'form-control' %>
       </div>
 
       <div class="col-md-6 field">
         <%= form.label :inss_discount %>
-        <%= form.text_field :inss_discount, readonly: true, data: { inss_discount_target: "discount" }, class: 'form-control' %>
+        <%= form.number_field :inss_discount, readonly: true, data: { inss_discount_target: "discount" }, class: 'form-control' %>
       </div>
     </div>
 
@@ -128,6 +128,6 @@
     </div>
 
   <div class="actions">
-    <%= form.submit 'Submit', class: 'btn btn-primary mt-3', data: { action: "click->nested-form#submitForm" } %>
+    <%= form.submit 'Submit', class: 'btn btn-primary mt-3', data: {action: "click->modal#submitEnd"} %>
   </div>
 <% end %>

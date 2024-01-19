@@ -1,0 +1,2 @@
+<%= turbo_stream.update("proponents", partial: "proponents/list", locals: { proponents: @proponents }) %>
+<%= turbo_stream.replace "flash", partial: "shared/flash" %>

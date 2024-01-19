@@ -1,16 +1,16 @@
 class ProponentsController < ApplicationController
   before_action :set_proponent, only: [:show, :edit, :update, :destroy]
+  before_action :set_proponents, only: [:create, :index, :destroy]
+  before_action :build_proponent, only: [:new, :create]
 
   def index
-    @proponents = Proponent.page(params[:page]).per(5)
+    @proponents
   end
 
   def show; end
 
   def new
-    @proponent = Proponent.new
-    @proponent.build_address
-    @proponent.contacts.build
+    @proponent
   end
 
   def edit; end
@@ -21,11 +21,11 @@ class ProponentsController < ApplicationController
 
     respond_to do |format|
       if operation.succeeded?
-        format.html { redirect_to root_path, notice: 'Project was successfully created.' }
-        format.json { render :index, status: :created }
+        format.turbo_stream { flash.now[:notice] = "Proponent created" }
+        format.json { render json: true }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: operation.errors.messages, status: :unprocessable_entity }
+        format.turbo_stream { flash.now[:error] = "Proponent not created" }
+        format.json { render json: operation.errors.full_messages, status: :unprocessable_entity}
       end
     end
   end
@@ -34,14 +34,18 @@ class ProponentsController < ApplicationController
 
   def destroy
     @proponent.destroy
-    redirect_to proponents_path, notice: 'Proponent was successfully destroyed.'
+
+    flash[:notice] = "Proponent removed"
+
+    render turbo_stream: [
+      turbo_stream.update("flash", partial: "shared/flash"),
+      turbo_stream.update("proponents", partial: "proponents/list", locals: { proponents: @proponents })
+    ]
   end
 
   def inss_discount
     operation = Operations::Proponents::InssDiscountCalculator.new(params[:salary].to_f)
     operation.perform
-
-    puts operation.total_discount
 
     respond_to do |format|
       if operation.succeeded?
@@ -53,6 +57,16 @@ class ProponentsController < ApplicationController
   end
 
   private
+
+  def build_proponent
+    @proponent = Proponent.new
+    @proponent.build_address
+    @proponent.contacts.build
+  end
+
+  def set_proponents
+    @proponents ||= Proponent.page(params[:page]).per(5)
+  end
 
   def set_proponent
     @proponent = Proponent.find(params[:id])

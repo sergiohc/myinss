@@ -18,8 +18,11 @@
     <main>
       <div class="container">
         <div class="row">
+          <div id="flash" class="flash mt-4">
+            <%= render partial: "shared/flash" %>
+          </div>
           <%= yield %>
-          <%= turbo_frame_tag "remote_modal", target: "_top" %>
+          <%= turbo_frame_tag "modal", target: "_top" %>
         </div>
       </div>
     </main>

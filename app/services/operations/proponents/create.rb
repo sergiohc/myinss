@@ -5,12 +5,11 @@ module Operations
 
       attr_reader :object, :validator
 
-      # TODO: add validation
-      # delegate :errors, to: :validator
+      delegate :errors, to: :validator
 
       def execute
         build
-        # validate
+        validate
         persist
         @object
       end
@@ -26,7 +25,7 @@ module Operations
       end
 
       def build
-        net_salary = params[:salary] - params[:inss_discount]
+        net_salary = params[:salary].to_f - params[:inss_discount].to_f
 
         params[:net_salary] = net_salary.round(2)
         @object = Proponent.new(params)
