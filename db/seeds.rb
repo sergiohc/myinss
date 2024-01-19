@@ -6,18 +6,18 @@
 10.times do
   proponent = Proponent.create!(
     name: FFaker::Name.name,
-    cpf: FFaker::IdentificationBR.pretty_cpf,
+    cpf: FFaker::IdentificationBR.cpf,
     date_of_birth: FFaker::Time.between(30.years.ago, 18.years.ago),
     salary: rand(0..7786.02).to_f.round(2)
   )
 
   proponent.contacts.create!(
-    contact_type: ['personal'],
+    contact_type: 'personal',
     phone_number: FFaker::PhoneNumberBR.phone_number
   )
 
   proponent.contacts.create!(
-    contact_type: ['reference'],
+    contact_type: 'reference',
     phone_number: FFaker::PhoneNumberBR.phone_number
   )
 
