@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Operations
   module Proponents
     class Create < ComposableOperations::Operation

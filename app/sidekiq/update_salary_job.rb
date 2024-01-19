@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UpdateSalaryJob
   include Sidekiq::Job
 
@@ -9,6 +11,6 @@ class UpdateSalaryJob
     return if operation.halted?
 
     net_salary = proponent.salary.to_f - operation.total_discount.to_f
-    proponent.update(net_salary: net_salary.round(2) , inss_discount: operation.total_discount.round(2))
+    proponent.update(net_salary: net_salary.round(2), inss_discount: operation.total_discount.round(2))
   end
 end

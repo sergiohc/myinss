@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # ./lib/tasks/update_salary.rake
 
 namespace :proponent do

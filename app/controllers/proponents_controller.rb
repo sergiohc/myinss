@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class ProponentsController < ApplicationController
-  before_action :set_proponent, only: [:show, :edit, :update, :destroy]
-  before_action :set_proponents, only: [:create, :index, :destroy]
-  before_action :build_proponent, only: [:new, :create]
+  before_action :set_proponent, only: %i[show edit update destroy]
+  before_action :set_proponents, only: %i[create index destroy]
+  before_action :build_proponent, only: %i[new create]
 
   def index
     @proponents
@@ -21,11 +23,11 @@ class ProponentsController < ApplicationController
 
     respond_to do |format|
       if operation.succeeded?
-        format.turbo_stream { flash.now[:notice] = "Proponent created" }
+        format.turbo_stream { flash.now[:notice] = 'Proponent created' }
         format.json { render json: true }
       else
-        format.turbo_stream { flash.now[:error] = "Proponent not created" }
-        format.json { render json: operation.errors.full_messages, status: :unprocessable_entity}
+        format.turbo_stream { flash.now[:error] = 'Proponent not created' }
+        format.json { render json: operation.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end
@@ -35,11 +37,11 @@ class ProponentsController < ApplicationController
   def destroy
     @proponent.destroy
 
-    flash[:notice] = "Proponent removed"
+    flash[:notice] = 'Proponent removed'
 
     render turbo_stream: [
-      turbo_stream.update("flash", partial: "shared/flash"),
-      turbo_stream.update("proponents", partial: "proponents/list", locals: { proponents: @proponents })
+      turbo_stream.update('flash', partial: 'shared/flash'),
+      turbo_stream.update('proponents', partial: 'proponents/list', locals: { proponents: @proponents })
     ]
   end
 
@@ -65,7 +67,7 @@ class ProponentsController < ApplicationController
   end
 
   def set_proponents
-    @proponents ||= Proponent.page(params[:page]).per(5)
+    @set_proponents ||= Proponent.page(params[:page]).per(5)
   end
 
   def set_proponent
@@ -73,8 +75,8 @@ class ProponentsController < ApplicationController
   end
 
   def proponent_params
-      params.require(:proponent).permit(:name, :cpf, :date_of_birth, :salary, :inss_discount,
-                                    address_attributes: [:id, :street, :number, :neighborhood, :city, :state, :cep, :_destroy],
-                                    contacts_attributes: [:id, :contact_type, :phone_number, :_destroy])
+    params.require(:proponent).permit(:name, :cpf, :date_of_birth, :salary, :inss_discount,
+                                      address_attributes: %i[id street number neighborhood city state cep _destroy],
+                                      contacts_attributes: %i[id contact_type phone_number _destroy])
   end
 end

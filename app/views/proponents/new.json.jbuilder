@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.proponent do
   json.extract! @proponent, :id, :name, :cpf, :date_of_birth, :salary, :inss_discount, :net_salary
   json.address do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Operations::Proponents::Create, type: :operation do
@@ -5,18 +7,17 @@ RSpec.describe Operations::Proponents::Create, type: :operation do
 
   let(:params) do
     FactoryBot.attributes_for(:proponent,
-      name: 'John Doe',
-      cpf: '12345678901',
-      date_of_birth: '1980-01-01',
-      salary: 5000.0,
-      inss_discount: 500.0
-    ).merge(
-      contacts_attributes: [
-        FactoryBot.attributes_for(:personal_contact),
-        FactoryBot.attributes_for(:reference_contact)
-      ],
-      address_attributes: FactoryBot.attributes_for(:address)
-    )
+                              name: 'John Doe',
+                              cpf: '12345678901',
+                              date_of_birth: '1980-01-01',
+                              salary: 5000.0,
+                              inss_discount: 500.0).merge(
+                                contacts_attributes: [
+                                  FactoryBot.attributes_for(:personal_contact),
+                                  FactoryBot.attributes_for(:reference_contact)
+                                ],
+                                address_attributes: FactoryBot.attributes_for(:address)
+                              )
   end
 
   describe '#execute' do

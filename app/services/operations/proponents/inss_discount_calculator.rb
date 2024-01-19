@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module Operations
   module Proponents
-    class InssDiscountCalculator  < ComposableOperations::Operation
+    class InssDiscountCalculator < ComposableOperations::Operation
       processes :params
 
       # Faixas de salário e suas respectivas alíquotas do INSS 2024
@@ -30,10 +32,9 @@ module Operations
         SALARY_BRACKETS.each do |bracket|
           amount_to_calculate_within_bracket = @salary.clamp(bracket[:min], bracket[:max]) - bracket[:min]
           @total_discount += amount_to_calculate_within_bracket * bracket[:rate]
-          break if @salary <= bracket[:max]  # Sai do loop se o salário estiver dentro da faixa atual
+          break if @salary <= bracket[:max] # Sai do loop se o salário estiver dentro da faixa atual
         end
       end
-
     end
   end
 end

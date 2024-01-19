@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :contact do
     contact_type { Contact.contact_types.keys.sample }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Proponent < ApplicationRecord
   has_one :address, dependent: :destroy, inverse_of: :proponent
   has_many :contacts, dependent: :destroy, inverse_of: :proponent

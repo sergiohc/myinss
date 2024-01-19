@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :proponent do
     name { FFaker::Name.name }
@@ -8,13 +10,13 @@ FactoryBot.define do
     net_salary { 0 }
 
     after(:create) do |proponent|
-      create(:address, proponent: proponent)
-      create(:personal_contact, proponent: proponent)
+      create(:address, proponent:)
+      create(:personal_contact, proponent:)
     end
 
     after(:build) do |proponent|
-      proponent.address ||= build(:address, proponent: proponent)
-      proponent.contacts << build(:contact, contact_type: 'personal', proponent: proponent) if proponent.contacts.empty?
+      proponent.address ||= build(:address, proponent:)
+      proponent.contacts << build(:contact, contact_type: 'personal', proponent:) if proponent.contacts.empty?
     end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DashboardController < ApplicationController
   # GET /proponents or /proponents.json
   def index
@@ -22,4 +24,3 @@ class DashboardController < ApplicationController
     end
   end
 end
-

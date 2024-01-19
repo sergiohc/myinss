@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Operations
   module Proponents
     class CreateValidator
@@ -18,22 +20,22 @@ module Operations
       def validate_proponent
         return if proponent.valid?
 
-        proponent.errors.messages.each do | attribute , message|
+        proponent.errors.messages.each do |attribute, message|
           errors.add(attribute, message)
         end
       end
 
       def validate_address
-        return if proponent&.address.valid?
+        return if proponent&.address&.valid?
 
-        proponent.errors.add_nested("address", "street", "is required")
+        proponent.errors.add_nested('address', 'street', 'is required')
       end
 
       def validate_contacts
         proponent.contacts.each do |contact|
           next if contact.valid?
 
-          contact.errors.add_nested("name", "is required")
+          contact.errors.add_nested('name', 'is required')
         end
       end
     end

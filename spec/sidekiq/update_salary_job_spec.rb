@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'sidekiq/testing'
 
@@ -11,11 +13,10 @@ RSpec.describe UpdateSalaryJob, type: :job do
   end
 
   it 'queues the job' do
-
     # Ensure no duplicate jobs are queued
-    expect {
+    expect do
       UpdateSalaryJob.perform_async(proponent.id)
-    }.to change(UpdateSalaryJob.jobs, :size).by(1)
+    end.to change(UpdateSalaryJob.jobs, :size).by(1)
 
     # Check if arguments passed correct
     expect(UpdateSalaryJob.jobs[0]['args']).to eq([proponent.id])
