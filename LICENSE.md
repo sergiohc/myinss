@@ -1,6 +1,6 @@
 The MIT License (MIT)
 
-Copyright (c) [2024] [Sergio Henrique Cezar Padilha]
+Copyright (c) 2024 Sergio Henrique Cezar Padilha carrying the CPF 076.644.349.38 and CNPJ 47.476.357/0001-04 (S H C PADILHA CONSULTORIA EM TECNOLOGIA DA INFORMACAO LTDA)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
