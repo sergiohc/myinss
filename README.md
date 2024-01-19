@@ -16,8 +16,7 @@ Este projeto fornece meios para calcular o desconto do INSS
 
 Você precisará ter o [Docker instalado](https://docs.docker.com/get-docker/).
 Ele está disponível no Windows, macOS e na maioria das distribuições do Linux. Se você é novo no
-Docker e quer aprender em detalhes, confira os [links de recursos adicionais](#aprenda-mais-sobre-docker-e-ruby-on-rails) perto do final deste
-README.
+Docker e quer aprender em detalhes, confira os [links de recursos adicionais](#aprenda-mais-sobre-docker-e-ruby-on-rails)
 
 Você também precisará habilitar o suporte ao Docker Compose v2 se estiver usando o Docker
 Desktop. No Linux nativo sem o Docker Desktop, você pode [instalá-lo como um plugin
