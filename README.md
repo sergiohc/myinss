@@ -1,6 +1,6 @@
 # Cálculo do INSS para 2024
 
-Este projeto fornece um exemplo de como calcular o desconto do INSS para um salário de R$ 3.000,00 em 2024. O cálculo é feito com base nas faixas salariais e alíquotas do INSS para esse ano.
+Este projeto fornece meios para calcular o desconto do INSS
 
 ## Exemplo de Cálculo
 
