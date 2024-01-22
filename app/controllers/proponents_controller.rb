@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 class ProponentsController < ApplicationController
+  before_action :authenticate_user!
+
   before_action :set_proponent, only: %i[show edit update destroy]
   before_action :set_proponents, only: %i[create index destroy]
   before_action :build_proponent, only: %i[new create]
 
-  def index
-    @proponents
-  end
+  def index; end
 
   def show; end
 
@@ -67,7 +67,7 @@ class ProponentsController < ApplicationController
   end
 
   def set_proponents
-    @set_proponents ||= Proponent.page(params[:page]).per(5)
+    @proponents ||= Proponent.page(params[:page]).per(5)
   end
 
   def set_proponent

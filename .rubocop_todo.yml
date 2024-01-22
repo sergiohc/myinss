@@ -37,6 +37,9 @@ Metrics/PerceivedComplexity:
 Style/Documentation:
   Enabled: false
 
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Style/IfUnlessModifier:

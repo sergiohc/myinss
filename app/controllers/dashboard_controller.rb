@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class DashboardController < ApplicationController
+  before_action :authenticate_user!
+
   # GET /proponents or /proponents.json
   def index
     @proponents = Proponent.all.group_by { |proponent| salary_range(proponent.salary) }
