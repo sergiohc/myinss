@@ -11,9 +11,7 @@ class ProponentsController < ApplicationController
 
   def show; end
 
-  def new
-    @proponent
-  end
+  def new; end
 
   def edit; end
 

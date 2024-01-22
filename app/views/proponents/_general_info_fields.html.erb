@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col field">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control', required: true %>
+  </div>
+</div>
+
+<div class="row mt-2" data-controller="inss-discount">
+  <div class="col-md-6 field">
+    <%= form.label :salary %>
+    <%= form.number_field :salary, min: 0, max: 7786.02, data: {  action: "change->inss-discount#calculate",
+                                                       inss_discount_target: "salary" },  class: 'form-control', required: true %>
+  </div>
+
+  <div class="col-md-6 field">
+    <%= form.label :inss_discount %>
+    <%= form.number_field :inss_discount, readonly: true, data: { inss_discount_target: "discount" }, class: 'form-control' %>
+  </div>
+</div>
+
+<div class="row mt-2">
+  <div class="col-md-6 field">
+    <%= form.label :date_of_birth %>
+    <%= form.date_field  :date_of_birth, class: 'form-control', required: true %>
+  </div>
+
+  <div class="col-md-6 field">
+    <%= form.label :cpf %>
+    <%= form.text_field :cpf, class: 'form-control', required: true %>
+  </div>
+</div>

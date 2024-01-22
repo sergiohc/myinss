@@ -1,0 +1,37 @@
+<%= form.fields_for :address do |address_fields| %>
+  <div class="row">
+    <div class="col-md-6 field">
+      <%= address_fields.label :cep %>
+      <%= address_fields.text_field :cep, class: 'form-control', required: true %>
+    </div>
+
+    <div class="col-md-6 field">
+      <%= address_fields.label :street %>
+      <%= address_fields.text_field :street, class: 'form-control', required: true %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 field">
+      <%= address_fields.label :number %>
+      <%= address_fields.text_field :number, class: 'form-control', required: true %>
+    </div>
+
+    <div class="col-md-6 field">
+      <%= address_fields.label :neighborhood %>
+      <%= address_fields.text_field :neighborhood, class: 'form-control', required: true %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 field">
+      <%= address_fields.label :city %>
+      <%= address_fields.text_field :city, class: 'form-control', required: true %>
+    </div>
+
+    <div class="col-md-6 field">
+      <%= address_fields.label :state %>
+      <%= address_fields.text_field :state, class: 'form-control', required: true %>
+    </div>
+  </div>
+<% end %>

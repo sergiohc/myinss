@@ -3,6 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe ProponentsController, type: :controller do
+  let(:user) { create(:user) }
+
+  before do
+    allow(controller).to receive(:authenticate_user!).and_return(user)
+  end
+
   let(:valid_attributes) do
     FactoryBot.attributes_for(:proponent).merge(
       contacts_attributes: [
@@ -32,19 +38,11 @@ RSpec.describe ProponentsController, type: :controller do
     end
   end
 
-  describe 'GET #show' do
-    # TODO
-  end
-
   describe 'GET #new' do
     it 'returns a success response' do
       get :new, params: {}
       expect(response).to be_successful
     end
-  end
-
-  describe 'GET #edit' do
-    # TODO
   end
 
   describe 'POST #create' do
@@ -73,13 +71,5 @@ RSpec.describe ProponentsController, type: :controller do
         assert_response :unprocessable_entity
       end
     end
-  end
-
-  describe 'PUT #update' do
-    # TODO
-  end
-
-  describe 'DELETE #destroy' do
-    # TODO
   end
 end

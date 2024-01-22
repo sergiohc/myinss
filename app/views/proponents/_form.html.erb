@@ -1,47 +1,6 @@
 <%= form_with model: proponent, data: { turbo_frame: "_top", controller: "nested-form", nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |form| %>
-  <% if proponent.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(proponent.errors.count, "error") %> prohibited this proponent from being saved:</h2>
 
-      <ul>
-        <% proponent.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-    <% end %>
-
-    <div class="row">
-      <div class="col field">
-        <%= form.label :name %>
-        <%= form.text_field :name, class: 'form-control' %>
-      </div>
-    </div>
-
-    <div class="row mt-2" data-controller="inss-discount">
-      <div class="col-md-6 field">
-        <%= form.label :salary %>
-        <%= form.number_field :salary, min: 0, max: 7786.02, data: {  action: "change->inss-discount#calculate",
-                                                inss_discount_target: "salary" },  class: 'form-control' %>
-      </div>
-
-      <div class="col-md-6 field">
-        <%= form.label :inss_discount %>
-        <%= form.number_field :inss_discount, readonly: true, data: { inss_discount_target: "discount" }, class: 'form-control' %>
-      </div>
-    </div>
-
-    <div class="row mt-2">
-      <div class="col-md-6 field">
-        <%= form.label :date_of_birth %>
-        <%= form.date_field  :date_of_birth, class: 'form-control' %>
-      </div>
-
-      <div class="col-md-6 field">
-        <%= form.label :cpf %>
-        <%= form.text_field :cpf, class: 'form-control' %>
-      </div>
-    </div>
+    <%= render partial: 'general_info_fields', locals: { form: form } %>
 
     <!-- Accordion -->
     <div class="accordion mt-4" id="registrationAccordion">
@@ -56,43 +15,7 @@
         <div id="collapseAddress" class="accordion-collapse collapse" aria-labelledby="headingAddress"
           data-bs-parent="#registrationAccordion">
           <div class="accordion-body">
-            <%= form.fields_for :address do |address_fields| %>
-            <div class="row">
-              <div class="col-md-6 field">
-                <%= address_fields.label :cep %>
-                <%= address_fields.text_field :cep, class: 'form-control' %>
-              </div>
-
-              <div class="col-md-6 field">
-                <%= address_fields.label :street %>
-                <%= address_fields.text_field :street, class: 'form-control' %>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-6 field">
-                <%= address_fields.label :number %>
-                <%= address_fields.text_field :number, class: 'form-control' %>
-              </div>
-
-              <div class="col-md-6 field">
-                <%= address_fields.label :neighborhood %>
-                <%= address_fields.text_field :neighborhood, class: 'form-control' %>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-6 field">
-                <%= address_fields.label :city %>
-                <%= address_fields.text_field :city, class: 'form-control' %>
-              </div>
-
-              <div class="col-md-6 field">
-                <%= address_fields.label :state %>
-                <%= address_fields.text_field :state, class: 'form-control' %>
-              </div>
-            </div>
-            <% end %>
+            <%= render partial: 'address_fields', locals: { form: form } %>
           </div>
         </div>
       </div>
