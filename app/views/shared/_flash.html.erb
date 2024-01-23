@@ -1,7 +1,13 @@
 <% flash.each do |type, msg| %>
   <% alert_class = type == "notice" ? "success" : "danger" %>
-  <div class="alert alert-<%= alert_class %> text-white alert-dismissible fade show" role="alert">
-    <strong> <%= msg %> </strong>
+  <div class="alert alert-<%= alert_class %> text-white alert-dismissible fade show mt-4" role="alert">
+    <% if msg.is_a?(Hash) %>
+      <% msg.each do | k, v | %>
+        <strong> <%= k %>: </strong> <span> <%= v.first[0] %> </span>
+      <% end %>
+    <% else %>
+      <strong> <%= msg %> </strong>
+    <% end %>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 <% end %>

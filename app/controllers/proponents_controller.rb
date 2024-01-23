@@ -24,8 +24,9 @@ class ProponentsController < ApplicationController
         format.turbo_stream { flash.now[:notice] = 'Proponent created' }
         format.json { render json: true }
       else
-        format.turbo_stream { flash.now[:error] = 'Proponent not created' }
-        format.json { render json: operation.errors.full_messages, status: :unprocessable_entity }
+        msg = operation.errors.messages
+        format.turbo_stream { flash.now[:error] = msg }
+        format.json { render json: msg, status: :unprocessable_entity }
       end
     end
   end
