@@ -4,7 +4,7 @@ class ProponentsController < ApplicationController
   before_action :authenticate_user!
 
   before_action :set_proponent, only: %i[show edit update destroy]
-  before_action :set_proponents, only: %i[create index destroy]
+  before_action :set_proponents, only: %i[create update index destroy]
   before_action :build_proponent, only: %i[new create]
 
   def index; end
@@ -31,7 +31,22 @@ class ProponentsController < ApplicationController
     end
   end
 
-  def update; end
+  def update # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+    operation = Operations::Proponents::Update.new(proponent_params)
+    operation.proponent = @proponent
+    operation.perform
+
+    respond_to do |format|
+      if operation.succeeded?
+        format.turbo_stream { flash.now[:notice] = 'Proponent updated' }
+        format.json { render json: true }
+      else
+        msg = operation.errors.messages
+        format.turbo_stream { flash.now[:error] = msg }
+        format.json { render json: operation.errors.messages, status: :unprocessable_entity }
+      end
+    end
+  end
 
   def destroy
     @proponent.destroy

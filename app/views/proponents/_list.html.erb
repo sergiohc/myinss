@@ -16,8 +16,13 @@
 
         <!--
         <td><%= link_to 'Show', proponent %></td>
-        <td><%= link_to 'Edit', edit_proponent_path(proponent) %></td>
         -->
+        <td>
+          <%= button_to edit_proponent_path(proponent), method: :get, class: 'btn btn-success', data: { turbo_frame: "modal" } do %>
+            <i class="bi bi-pencil-square"></i>
+            Edit
+          <% end %>
+        </td>
 
         <td>
           <%= button_to proponent_path(proponent), method: :delete, class: "btn btn-danger " do %>

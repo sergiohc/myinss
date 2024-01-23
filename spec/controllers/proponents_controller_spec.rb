@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe ProponentsController, type: :controller do # rubocop:disable Metrics/BlockLength
+  include ProponentsOperationHelpers
+
   let(:user) { create(:user) }
 
   before do
@@ -57,11 +59,7 @@ RSpec.describe ProponentsController, type: :controller do # rubocop:disable Metr
 
     context 'with Turbo Stream format' do
       it "returns a success response (i.e. to display the 'new' template)" do
-        operation = instance_double(Operations::Proponents::Create)
-        allow(Operations::Proponents::Create).to receive(:new).and_return(operation)
-        allow(operation).to receive(:perform)
-        allow(operation).to receive(:succeeded?).and_return(false)
-        allow(operation).to receive_message_chain(:errors, :messages).and_return(["Name can't be blank"])
+        operation = stub_failed_create_operation
 
         post :create, params: { proponent: invalid_attributes }, as: :turbo_stream
 
@@ -75,6 +73,46 @@ RSpec.describe ProponentsController, type: :controller do # rubocop:disable Metr
         post :create, params: { proponent: invalid_attributes }, as: :json
 
         assert_response :unprocessable_entity
+      end
+    end
+  end
+
+  describe 'PATCH #update' do
+    let(:proponent) { create(:proponent) }
+
+    before do
+      get :edit, params: { id: proponent.id }
+    end
+
+    context 'with Turbo Stream format and valid attributes' do
+      it 'updates the proponent and renders a successful Turbo Stream response' do
+        stub_valid_update_operation(proponent)
+        patch :update, params: { id: proponent.id, proponent: valid_attributes }, as: :turbo_stream
+
+        assert_response :success
+        assert_equal 'Proponent updated', flash.now[:notice]
+      end
+    end
+
+    context 'with Turbo Stream format and invalid attributes' do
+      it "returns a success response (i.e., to display the 'edit' template) and renders errors" do
+        operation = stub_failed_update_operation(proponent)
+
+        patch :update, params: { id: proponent.id, proponent: invalid_attributes }, as: :turbo_stream
+
+        assert_response :success
+        assert_equal ["Name can't be blank"], operation.errors.messages
+      end
+    end
+
+    context 'with Turbo as JSON' do
+      it 'returns an unprocessable_entity response with errors' do
+        operation = stub_failed_update_operation(proponent)
+
+        patch :update, params: { id: proponent.id, proponent: invalid_attributes }, as: :json
+
+        assert_response :unprocessable_entity
+        assert_equal ["Name can't be blank"], operation.errors.messages
       end
     end
   end
