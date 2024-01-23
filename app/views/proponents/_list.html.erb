@@ -3,7 +3,8 @@
     <tr>
       <th>Name</th>
       <th>Salary</th>
-      <th>actions</th>
+      <th>Net Salary</th>
+      <th>INSS Discount</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -13,6 +14,8 @@
       <tr>
         <td><%= proponent.name %></td>
         <td><%= proponent.salary %></td>
+        <td><%= proponent.net_salary %></td>
+        <td><%= proponent.inss_discount %></td>
 
         <td>
           <%= button_to proponent_path(proponent), method: :get, class: 'btn btn-info', data: { turbo_frame: "modal" } do %>
