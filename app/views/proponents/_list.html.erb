@@ -4,7 +4,7 @@
       <th>Name</th>
       <th>Salary</th>
       <th>actions</th>
-      <%# <th colspan="3"></th> %>
+      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -14,9 +14,13 @@
         <td><%= proponent.name %></td>
         <td><%= proponent.salary %></td>
 
-        <!--
-        <td><%= link_to 'Show', proponent %></td>
-        -->
+        <td>
+          <%= button_to proponent_path(proponent), method: :get, class: 'btn btn-info', data: { turbo_frame: "modal" } do %>
+            <i class="bi bi-eyeglasses"></i>
+            Show
+          <% end %>
+        </td>
+
         <td>
           <%= button_to edit_proponent_path(proponent), method: :get, class: 'btn btn-success', data: { turbo_frame: "modal" } do %>
             <i class="bi bi-pencil-square"></i>

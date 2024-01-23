@@ -1,0 +1,52 @@
+<div class="container py-3">
+  <div class="row">
+    <div class="col-md mx-auto">
+      <%= form_with model: @proponent do |form| %>
+
+      <div class="row mb-3">
+        <div class="col-4">
+          <%= form.label :name, 'Name:', class: 'col-form-label' %>
+          <%= form.text_field :name, value: @proponent.name, class: 'form-control', disabled: true %>
+        </div>
+
+        <div class="col-4">
+          <%= form.label :cpf, 'cpf:', class: 'col-form-label' %>
+          <%= form.text_field :cpf, value: @proponent.cpf, class: 'form-control', disabled: true %>
+        </div>
+
+        <div class="col-4">
+          <%= form.label :date_of_birth, 'Date of Birth:', class: 'col-form-label' %>
+          <%= form.text_field :date_of_birth, value: @proponent.date_of_birth, class: 'form-control', disabled: true %>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-4">
+          <%= form.label :salary, 'Salary:', class: 'col-form-label' %>
+          <%= form.text_field :salary, value: @proponent.salary, class: 'form-control', disabled: true %>
+        </div>
+
+        <div class="col-4">
+          <%= form.label :net_salary, 'Net Salary:', class: 'col-form-label' %>
+          <%= form.text_field :net_salary, value: @proponent.net_salary, class: 'form-control', disabled: true %>
+        </div>
+
+        <div class="col-4">
+          <%= form.label :inss_discount, 'INSS Discount:', class: 'col-form-label' %>
+          <%= form.text_field :inss_discount, value: @proponent.inss_discount, class: 'form-control', disabled: true %>
+        </div>
+      </div>
+
+    <div class="d-flex">
+      <%= form.label :address, 'Address:', class: 'p-2 fw-bold' %>
+      <div class="p-2"><%= simple_format(@proponent.address.full_address) %> </div>
+    </div>
+
+    <div class="d-flex">
+      <%= form.label :contacts, 'Contacts:', class: 'p-2 fw-bold' %>
+      <div class="p-2"> <%= @proponent.contacts.map(&:formatted_contact).join('<br>').html_safe %> </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+</div>

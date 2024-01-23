@@ -11,7 +11,6 @@ module Operations
       delegate :errors, to: :validator
 
       def execute
-        binding.pry
         build
         validate
         persist
