@@ -6,7 +6,7 @@ module ProponentsOperationHelpers
   end
 
   def stub_failed_create_operation(errors = ["Name can't be blank"])
-    stub_operation(Operations::Proponents::Create, succeeded: false, errors: errors)
+    stub_operation(Operations::Proponents::Create, succeeded: false, errors:)
   end
 
   def stub_valid_update_operation(proponent)
@@ -16,7 +16,7 @@ module ProponentsOperationHelpers
   end
 
   def stub_failed_update_operation(proponent, errors = ["Name can't be blank"])
-    stub_operation(Operations::Proponents::Update, succeeded: false, errors: errors).tap do |operation|
+    stub_operation(Operations::Proponents::Update, succeeded: false, errors:).tap do |operation|
       allow(operation).to receive(:proponent=).with(proponent)
     end
   end
