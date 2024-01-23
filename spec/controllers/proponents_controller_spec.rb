@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ProponentsController, type: :controller do
+RSpec.describe ProponentsController, type: :controller do # rubocop:disable Metrics/BlockLength
   let(:user) { create(:user) }
 
   before do
@@ -57,10 +57,16 @@ RSpec.describe ProponentsController, type: :controller do
 
     context 'with Turbo Stream format' do
       it "returns a success response (i.e. to display the 'new' template)" do
+        operation = instance_double(Operations::Proponents::Create)
+        allow(Operations::Proponents::Create).to receive(:new).and_return(operation)
+        allow(operation).to receive(:perform)
+        allow(operation).to receive(:succeeded?).and_return(false)
+        allow(operation).to receive_message_chain(:errors, :messages).and_return(["Name can't be blank"])
+
         post :create, params: { proponent: invalid_attributes }, as: :turbo_stream
 
         assert_response :success
-        assert_equal 'Proponent not created', flash.now[:error]
+        assert_equal ["Name can't be blank"], operation.errors.messages
       end
     end
 
